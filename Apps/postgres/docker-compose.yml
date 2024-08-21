@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres:15 # Use the latest official PostgreSQL image
+    environment:
+      POSTGRES_DB: romulus # The default database to be created on startup
+    env_file:
+        - "${APP_SECRETS}/postgres/.env"
+    ports:
+      - "5432:5432" # Expose PostgreSQL's default port on the host machine
+    volumes:
+      - "${DATA_DIR}/postgresql:/var/lib/postgresql/data"
+    networks:
+      - l2_intra_network
+networks:
+  l2_intra_network:
+    external: true

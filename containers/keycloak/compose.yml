@@ -1,0 +1,10 @@
+version: '2'
+services:
+  keycloak:
+    image: docker.io/bitnami/keycloak:latest
+    ports:
+      - "80:8080"
+    environment:
+      - KEYCLOAK_CREATE_ADMIN_USER=true
+    volumes:
+      - '${APP_DATA}/keycloak/Theme:/opt/bitnami/keycloak/themes/theme'
